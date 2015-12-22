@@ -1,0 +1,38 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<script src="https://apis.google.com/js/api:client.js"></script>
+<script>
+function glogin (){
+var r = '回傳的網址';
+  var auth2;
+  gapi.load('auth2', function(){
+    // Retrieve the singleton for the GoogleAuth library and set up the client.
+    auth2 = gapi.auth2.init({
+      client_id: 'googleAppId',
+      cookiepolicy: 'single_host_origin',
+      'redirect_uri': 'http://myownpersonaldomain.com/code',
+      scope: 'profile email'
+    });
+	//需要綁定的google登入事件的元素customBtn
+    attachSignin(document.getElementById('customBtn'),r);
+  });
+  function attachSignin(element,re) {
+    auth2.attachClickHandler(element, {},
+		//成功取得憑證要做的事情
+        function(googleUser) {
+		  //取得google回傳的基本資料
+          var profile = googleUser.getBasicProfile();
+		  //取得google回傳的token
+          var id_token = googleUser.getAuthResponse().id_token;
+          var id,Email,Name;
+          if (profile){
+            id=profile.getId();
+            Email=profile.getEmail();
+            Name=profile.getName();
+          }		  
+        }, function(error) {
+			//取得憑證失敗要做的事情
+        });
+  }
+}
+
+</script>
