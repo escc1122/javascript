@@ -1,0 +1,29 @@
+<script>
+var test ={
+  t1 : 'aaaaa',
+  t2 : 'bbbbb',
+  t3 : function(){},
+  t4 : function(){},
+  t5 : function(){
+    console.log('t5')
+  },
+  t6 : function(){
+    console.log('t6');
+    this.t3 = function(){
+	console.log('t63');
+    }
+  }
+};
+
+console.log(test.t1);
+test.t3();
+test.t5();
+test.t6();
+test.t3();
+</script>
+
+出現結果
+aaaaa
+t5
+t6
+t63
