@@ -1,6 +1,8 @@
   function downloadFile(){
+  //建立一個url link
     var downloadLink = document.createElement("a");
     var fileName="test.csv";
+    //取得要寫入的資料
     var $table=$("#table1");
     var content="";
     var $trs = $table.find("tr").not("#space");
@@ -11,7 +13,10 @@
         console.log($(this).text());
       })
     });
+    //填入down預設檔名
     downloadLink.download = fileName;
+    //填入格式 編碼部分尚未成功 content為文件資料
     downloadLink.href = "data:text/plain;charset='big5'," + content;
+    //執行下載
     downloadLink.click();
   }
