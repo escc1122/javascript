@@ -1,0 +1,17 @@
+  function downloadFile(){
+    var downloadLink = document.createElement("a");
+    var fileName="test.csv";
+    var $table=$("#table1");
+    var content="";
+    var $trs = $table.find("tr").not("#space");
+    $.each($trs,function(){
+      var $tds=$(this).find("td");
+      $.each($tds,function(){
+        content=content+ $(this).text()+",";
+        console.log($(this).text());
+      })
+    });
+    downloadLink.download = fileName;
+    downloadLink.href = "data:text/plain;charset='big5'," + content;
+    downloadLink.click();
+  }
