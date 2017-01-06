@@ -1,0 +1,38 @@
+<html id="ooxx">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=9; IE=10; IE=11" />
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+</head>
+<div id="msg">
+
+</div>
+</html>
+
+
+
+
+
+<script src="/billReport.js"></script>
+<script language="javascript">
+  
+  billReport.init({
+    callBack : function(r){
+          var function aaa(){
+            console.log("test");
+          }
+          var a = r.split("\r\n");
+          for (var i =1 ; i<a.length ; i++){
+             aaa();
+          }
+    
+    
+    
+    },
+    drop_name : "ooxx",
+    start_time:"${startDate}".replace("-",""),
+    end_time:"${endDate}".replace("-","")
+  });
+  
+  </script>
