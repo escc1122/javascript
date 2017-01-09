@@ -1,5 +1,7 @@
 http://blog.lwxyfer.com/performance/
 
+https://leozdgao.me/why-dom-slow/
+
 http://www.codeceo.com/article/why-javascript-dom-slow.html
 
 http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html
