@@ -2,6 +2,8 @@ http://www.codeceo.com/article/why-javascript-dom-slow.html
 
 http://gent.ilcore.com/2011/03/how-not-to-trigger-layout-in-webkit.html
 
+https://read01.com/yjEoE6.html
+
 
 如下的操作會打破常規，並觸發瀏覽器執行layout：
 
