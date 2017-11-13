@@ -1,0 +1,43 @@
+
+
+
+
+// typeof 運算子會以字串傳回類型資訊。 typeof 可能會傳回的六個值如下："number"、"string"、"boolean"、"object"、"function" 和 "undefined"。
+// 方法一：
+Object.prototype.clone = function(){
+        var o = this.constructor === Array ? [] : {};
+        for(var e in this){
+                o[e] = typeof this[e] === "object" ? this[e].clone() : this[e];
+        }
+        return o;
+}
+
+
+//var a=new Array();alert(a instanceof Array);會返回 true，
+//同時 alert(a instanceof Object) 也會返回 true;
+//這是因為 Array 是 object 的子類
+//方法二：
+  /**
+     * 克隆一個對象
+     * @param Obj
+     * @returns
+     */
+    function clone(Obj) {
+        var buf;
+        if (Obj instanceof Array) {
+            buf = [];                    //創建一個空的數組 
+            var i = Obj.length;
+            while (i--) {
+                buf[i] = clone(Obj[i]);
+            }
+            return buf;
+        }else if (Obj instanceof Object){
+            buf = {};                   //創建一個空對象 
+            for (var k in Obj) {           //為這個對象添加新的屬性 
+                buf[k] = clone(Obj[k]);
+            }
+            return buf;
+        }else{                         //普通變量直接賦值
+            return Obj;
+        }
+    }
