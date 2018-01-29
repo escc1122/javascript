@@ -1,0 +1,47 @@
+<html>
+<head>
+  <meta charset="utf-8">
+<body>
+
+<div class='alTest'>
+  <pre>{{d}}</pre><br>
+
+  <span>"a1"</span><br>
+  <span>{{a1}}</span><br>
+  <span>"a2"</span><br>
+  <span>{{a2}}</span><br>
+  <span>"a3Object.a31"</span><br>
+  <span>{{a3Object.a31}}</span><br>
+  <span>"a3Object.a32"</span><br>
+  <span>{{a3Object.a32}}</span><br>
+  <span>"a4Array[0]"</span><br>
+  <span>{{a4Array[0]}}</span><br>
+  <span>"a4Array[1]"</span><br>
+  <span>{{a4Array[1]}}</span><br>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js'></script>
+<script>
+  (function () {
+    var data={
+      "a1":"testA1",
+      "a2":"testA2",
+      "a3Object":{
+        "a31":"oA31",
+        "a32":"oA32"
+      },
+      "a4Array":["aaa","bbb","ccc"]
+    };
+    var d =Object.assign({}, data);
+    data.d=d;
+    var vm = new Vue({
+      el:".alTest",
+      "data":data
+
+    });
+    //銷毀
+    vm.$destroy();
+  })();
+</script>
+</body>
+</html>
