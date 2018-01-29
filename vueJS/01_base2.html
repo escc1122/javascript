@@ -1,0 +1,80 @@
+<html>
+<head>
+  <meta charset="utf-8">
+<body>
+
+<div class="before">
+  <h1>DATA</h1>
+  <pre>{{d}}</pre><br>
+  <h1>before</h1>
+  <pre>{{before}}</pre><br>
+</div>
+
+
+<div class="after">
+  <h1>after</h1>
+  <pre>{{after}}</pre><br>
+</div>
+
+
+<h1>VIEW</h1>
+<div class='alTest'>
+
+  <span>{{a1}}</span><br>
+
+  <span>{{a2}}</span><br>
+
+  <span>{{a3Object.a31}}</span><br>
+
+  <span>{{a3Object.a32}}</span><br>
+
+  <span>{{a4Array[0]}}</span><br>
+  <span>{{a4Array[1]}}</span><br>
+
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js'></script>
+<script>
+  (function () {
+    var el_before={};
+    var el_after={};
+    var data={
+      "a1":"testA1",
+      "a2":"testA2",
+      "a3Object":{
+        "a31":"oA31",
+        "a32":"oA32"
+      },
+      "a4Array":["aaa","bbb","ccc"]
+    };
+
+    var vm = new Vue({
+      el:".alTest",
+      "data":data,
+      beforeMount(){
+        el_before=this.$el.outerHTML;
+        console.log(el_before);
+      },mounted:function () {
+        el_after=this.$el.outerHTML;
+      }
+    });
+
+    var vm_before = new Vue({
+      el:".before",
+      "data":{
+        d:data,
+        before:el_before
+      }
+    });
+
+    var vm_after = new Vue({
+      el:".after",
+      "data":{
+        after:el_after
+      }
+    });
+
+  })();
+</script>
+</body>
+</html>
