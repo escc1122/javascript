@@ -1,0 +1,26 @@
+<html>
+<head>
+  <meta charset="utf-8">
+<body>
+
+<div class='alTest'>
+  <div><div><div><div><div><div><div>{{message}}{{message2}}</div></div></div></div></div></div></div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js'></script>
+<script>
+  (function () {
+    var data={
+      "message":"1234567",
+      "message2":"",
+    };
+    var vm = new Vue({
+      el:".alTest",
+      "data":data
+    });
+    
+    vm.message2="change test";
+  })();
+</script>
+</body>
+</html>
