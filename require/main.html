@@ -18,12 +18,13 @@
       jquery: 'https://code.jquery.com/jquery-3.1.1.min',
       'M-0-2-3':'https://tw.i99.to/front_new/js/component/M-2-1',
       'vue':'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min',
-      'al_test':'/front_new/js/al_test'
+      'al_test':'/front_new/js/al_test',
+      'tools':'/front_new/js/tools'
     }
   });
   // Start the main app logic.
-  requirejs(['https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js','al_test','jquery'],
-          function   (Vue,altest,$) {
+  requirejs(['https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js','al_test','jquery','tools'],
+          function   (Vue,altest,$,tools) {
             var aaaaa = new Vue({
               data:{
                 bbbb:12345
@@ -31,10 +32,7 @@
             });
             alert('jquety版本'+$().jquery);
             alert(aaaaa.bbbb);
-
-
-
-
+            alert(tools.toDoSomeThing());
           });
 </script>
 </html>
