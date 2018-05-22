@@ -4,6 +4,8 @@ main.html 進入點
 
 al_test.js 測試用模塊
 
+tools.js 測試用 define
+
 
 參考:
 http://requirejs.org/
