@@ -1,0 +1,42 @@
+<html>
+<head>
+
+</head>
+<body>
+<button onclick="aaa()">aaaaa</button>
+
+</body>
+<script type="application/javascript">
+
+  function init() {
+    console.log(window);
+    console.log($);
+  }
+  function aaa() {
+    console.log(window.$);
+  }
+
+  (function () {
+    var d = document;
+    var js, id = 'jQuery_js', ref = d.getElementsByTagName('script')[0];
+//  if (d.getElementById(id)) {
+//    return;
+//  }
+    js = d.createElement('script');
+    js.id = id;
+    js.async = false;
+    js.src = 'http://code.jquery.com/jquery-1.10.2.min.js';
+//    js.onload = init();
+    js.onload = js.onreadystatechange = function () {
+      if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete"){
+        init();
+        js.onload = js.onreadystatechange = null;
+      }
+    };
+    ref.parentNode.insertBefore(js, ref);
+  })();
+
+</script>
+
+
+</html>
