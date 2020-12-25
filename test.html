@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+<div id='test' style="height: 500px ; width: 500px; background: red">
+
+</div>>
+
+<script>
+  $(function () {
+    var $drop = $("#test");
+    //抑制瀏覽器原有的拖拉操作效果
+    function stopEvent(evt) {
+      evt.stopPropagation(); //取消冒泡效果
+      evt.preventDefault();
+    }
+
+    function downloadFile(content){
+  //建立一個url link
+    var downloadLink = document.createElement("a");
+    var fileName="test.txt";
+    //取得要寫入的資料
+    var $table=$("#table1");
+
+    //填入down預設檔名
+    downloadLink.download = fileName;
+    //填入格式 編碼部分尚未成功 content為文件資料
+    downloadLink.href = "data:text/plain;charset='utf8'," + encodeURIComponent(content);
+    //執行下載
+    downloadLink.click();
+  }
+
+    function readXml(fileName , txt){
+		//console.log(txt);
+		let a = "namespace Data { export ";
+		let new_txt = "[\n";
+		let objectName ="";
+		if ("MsgData_zh.ts" === fileName){
+			objectName = "ZhCnMsgData"
+		}
+
+
+		txt = txt.substring(0,txt.length-1);
+		txt = txt.replace(a,"");
+		//console.log(txt);
+		eval(txt)
+		EnUsMsgData.sort(function (a, b) {
+			return a.id - b.id
+		});
+		
+		//console.log(JSON.stringify(EnUsMsgData));
+		// for (aaa in EnUsMsgData){
+		// 	//console.log(EnUsMsgData[aaa]);
+		// 	new_txt = new_txt + "\t{\n";
+		// 	for (let key in EnUsMsgData[aaa]){
+		// 		let key_value = EnUsMsgData[aaa][key];
+		// 		if (typeof key_value === "number"){
+		// 			new_txt = new_txt + '\t\t"'+key+'":'+EnUsMsgData[aaa][key] + ',\n';
+		// 		} else {
+		// 			new_txt = new_txt + '\t\t"'+key+'":"'+EnUsMsgData[aaa][key].toString() + '",\n';
+		// 		}
+		// 	}
+		// 	new_txt = new_txt + "\t}\n";
+			
+		// }
+		
+		// new_txt = new_txt + "]";
+
+
+
+
+
+
+		new_txt = JSON.stringify(EnUsMsgData);
+		new_txt = new_txt.replaceAll('"id"','\n\t\t"id"');
+		new_txt = new_txt.replaceAll('"msg"','\n\t\t"msg"');
+		new_txt = new_txt.replaceAll('"msgId"','\n\t\t"msgId"');
+		new_txt = new_txt.replaceAll('},{','\n\t},\n\t{');
+		new_txt = new_txt.replace('[{','[\n\t{');
+
+
+		console.log(new_txt);
+		downloadFile(new_txt);
+		
+
+    }
+
+    $drop.on("dragover", function (e) {
+      //滑鼠經過上方時加入特效
+      stopEvent(e);
+      $(e.target).addClass("hover");
+    }).on("dragleave", function (e) {
+      //滑鼠移開時移除特效
+      stopEvent(e);
+      $(e.target).removeClass("hover");
+    }).on("drop", function (e) {
+      //拖放操作完成事件
+      stopEvent(e);
+      var files = e.originalEvent.dataTransfer.files;
+	  
+	  
+
+      if(window.FileReader){
+        var reader = new FileReader();
+        reader.readAsText(files[0]);
+        reader.onload=function(f){
+        	console.log("file name = " + files[0].name)
+          readXml(files[0].name,this.result);
+
+        }
+      }
+
+    });
+
+  });
+</script>
+</body>
+</html>
