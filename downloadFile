@@ -16,7 +16,7 @@
     //填入down預設檔名
     downloadLink.download = fileName;
     //填入格式 編碼部分尚未成功 content為文件資料
-    downloadLink.href = "data:text/plain;charset='big5'," + content;
+    downloadLink.href = "data:text/plain;charset='big5'," + encodeURIComponent(content);
     //執行下載
     downloadLink.click();
   }
